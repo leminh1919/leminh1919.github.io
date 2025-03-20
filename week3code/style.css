@@ -1,0 +1,38 @@
+h1 {
+  color: rgb(109, 74, 74);
+  font-family: "Tektur", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 1;
+  font-style: normal;
+}
+h2 {
+  color: rgb(97, 75, 117);
+}
+h3 {
+  color: rgb(14, 7, 10);
+}
+p {
+  color: rgb(159, 151, 45);
+}
+li {
+  color: cornflowerblue;
+}
+.blue-color {
+  color: forestgreen;
+}
+#outcome {
+  color: rgb(40, 40, 40);
+  font-size: 3rem;
+}
+body {
+  background-color: rgb(223, 217, 188);
+  font-family: "Tektur", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+section {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+}

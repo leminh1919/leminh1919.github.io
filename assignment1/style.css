@@ -1,0 +1,22 @@
+#header {
+  font-weight: bold;
+  font-size: 45px;
+  margin-left: 40px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+#list {
+  margin-left: 60px;
+  font-size: 30px;
+  margin-top: 60px;
+}
+
+li {
+  margin-top: 20px;
+}
+
+.bot {
+  margin-bottom: 30px;
+}

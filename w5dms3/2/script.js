@@ -1,13 +1,24 @@
-
+let waterAmount = 0.7;
+let dryAmount = 0.03;
+let currentColour = "rgb(255, 255, 255)";
 
 document.getElementById("palette01").addEventListener("click", addColour);
 document.getElementById("palette02").addEventListener("click", addColour);
 document.getElementById("palette03").addEventListener("click", addColour);
 document.getElementById("palette04").addEventListener("click", addColour);
 
-
-function addColour(e){
+function addColour(e) {
   let buttonClicked = e.target;
+  let backgroundColour = getComputedStyle(buttonClicked).backgroundColor;
+  currentColour = backgroundColour;
+  let newAlphaColour = rgbaFromRGBString(backgroundColour, waterAmount);
+  setBrushColour(newAlphaColour);
+}
+
+function dryingBrush() {
+  waterAmount = waterAmount - dryAmount;
+  let newColour = rgbaFromRGBString(currentColour, waterAmount);
+  setBrushColour(newColour);
 }
 
 document.getElementById("waterCupMouth").addEventListener("click", () => {
@@ -15,7 +26,7 @@ document.getElementById("waterCupMouth").addEventListener("click", () => {
 });
 
 /* expects an rgb() string and a=n alpha value as a number */
-function rgbaFromRGBString(rgbString, newAlpha){
+function rgbaFromRGBString(rgbString, newAlpha) {
   /* first we need to get the number values from our string */
   /* the below will return an array with our seperate r,g,b values */
   let colours = rgbString.match(/\d+/g);
@@ -27,7 +38,6 @@ function rgbaFromRGBString(rgbString, newAlpha){
   return newRGBAString;
 }
 
-function setBrushColour(newColour){
+function setBrushColour(newColour) {
   ctx.strokeStyle = newColour;
 }
-

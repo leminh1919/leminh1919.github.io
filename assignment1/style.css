@@ -8,15 +8,22 @@
 }
 
 #list {
-  margin-left: 60px;
+  width: 80%;
+  margin: 10px auto;
+  padding: 30px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  background-color: #f0ebeb;
   font-size: 30px;
-  margin-top: 60px;
+  line-height: 1.6;
 }
 
-li {
-  margin-top: 20px;
+#question {
+  margin-left: 100px;
+  margin-top: 30px;
+  font-size: 30px;
 }
 
-.bot {
-  margin-bottom: 30px;
+body {
+  background-color: rgb(245, 153, 40);
 }

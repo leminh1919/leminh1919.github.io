@@ -2,17 +2,24 @@ let waterAmount = 0.5;
 let dryAmount = 0.005;
 let currentColour = "rgb(255, 255, 255)";
 
-document.getElementById("palette01").addEventListener("click", addColour);
+/*document.getElementById("palette01").addEventListener("click", addColour);
 document.getElementById("palette02").addEventListener("click", addColour);
 document.getElementById("palette03").addEventListener("click", addColour);
 document.getElementById("palette04").addEventListener("click", addColour);
 document.getElementById("palette05").addEventListener("click", addColour);
 document.getElementById("palette06").addEventListener("click", addColour);
 document.getElementById("palette07").addEventListener("click", addColour);
-document.getElementById("palette08").addEventListener("click", addColour);
+document.getElementById("palette08").addEventListener("click", addColour);*/
 
+let paletteColourSelectors = document.getElementsByClassName("paletteColour");
 
-function addColour(e){
+let colourSelectorArray = Array.from(paletteColourSelectors);
+
+colourSelectorArray.forEach((selector) => {
+  selector.addEventListener("click", addColour);
+});
+
+function addColour(e) {
   let buttonClicked = e.target;
   let backgroundColour = getComputedStyle(buttonClicked).backgroundColor;
   currentColour = backgroundColour;
@@ -20,7 +27,7 @@ function addColour(e){
   setBrushColour(newAlphaColour);
 }
 
-function dryingBrush(){
+function dryingBrush() {
   waterAmount = waterAmount - dryAmount;
   let newColour = rgbaFromRGBString(currentColour, waterAmount);
   setBrushColour(newColour);
@@ -31,7 +38,7 @@ document.getElementById("waterCupMouth").addEventListener("click", () => {
 });
 
 /* expects an rgb() string and a=n alpha value as a number */
-function rgbaFromRGBString(rgbString, newAlpha){
+function rgbaFromRGBString(rgbString, newAlpha) {
   /* first we need to get the number values from our string */
   /* the below will return an array with our seperate r,g,b values */
   let colours = rgbString.match(/\d+/g);
@@ -43,23 +50,19 @@ function rgbaFromRGBString(rgbString, newAlpha){
   return newRGBAString;
 }
 
-function setBrushColour(newColour){
+function setBrushColour(newColour) {
   ctx.strokeStyle = newColour;
 }
-
 
 ///////////////////////////////////////
 
 /* we created our canvas in konvaSetup.js and called it canvas */
 
 document.getElementById("undoBtn").addEventListener("click", () => {
-  
   drawDataURLToCanvas(prevState);
 });
 
-document.getElementById("redoBtn").addEventListener("click", () => {
-
-});
+document.getElementById("redoBtn").addEventListener("click", () => {});
 
 //
 let prevState;
@@ -68,17 +71,25 @@ let prevState;
 document.getElementById("saveBtn").addEventListener("click", () => {
   let canvasCapture = canvas.toDataURL();
   /* remember to comment or delete below if using in production */
-  //console.log(canvasCapture);
+  console.log(canvasCapture);
   ///
   prevState = canvasCapture;
   ///
+  //downloadCanvasImage (canvasCapture, "myImage");
 });
 
-function drawDataURLToCanvas(imgDataURL){
+function downloadCanvasImage(dataURL, fileName) {
+  let downloadLink = document.createElement("a");
+  downloadLink.href = dataURL;
+  downloadLink.download = fileName;
+  downloadLink.click();
+}
+
+function drawDataURLToCanvas(imgDataURL) {
   /* create img element */
   let img2Draw = new Image();
   /* create an event listener to trigger on src loading */
-  img2Draw.addEventListener("load", function drawOnLoad(){
+  img2Draw.addEventListener("load", function drawOnLoad() {
     /* clear what's already on the canvas */
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     /* draw the img using the canvas context - ctx is created in konvaSetup.js */
@@ -92,5 +103,5 @@ function drawDataURLToCanvas(imgDataURL){
     img2Draw.remove();
   });
   /* give the element a source, kicking off the event listener */
-  img2Draw.src = imgDataURL;  
+  img2Draw.src = imgDataURL;
 }

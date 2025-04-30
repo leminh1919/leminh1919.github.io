@@ -1,0 +1,13 @@
+button {
+  padding: 20px;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+img {
+  display: block;
+}
+
+.round {
+  border-radius: 50%;
+}

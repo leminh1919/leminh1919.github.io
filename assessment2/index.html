@@ -5,10 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basketball Tatics Tool</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/konva@9/konva.min.js"></script>
-    <script src="script.js"></script>
   </head>
   <body>
-    div
+    <div style="text-align: center; margin-bottom: 10px">
+      <label for="combinedFormation">Full Formation:</label>
+      <select id="combinedFormation" onchange="applyCombinedFormation()">
+        <option value="man to man (default)">man to man (default)</option>
+        <option value="zone defense 2-3">zone defense 2-3</option>
+        <option value="zone defense 3-2">zone defense 3-2</option>
+        <option value="zone defense 1-3-1">zone defense 1-3-1</option>
+        <option value="zone defense 2-1-2">zone defense 2-1-2</option>
+        <option value="zone defense 1-2s-2">zone defense 1-2-2</option>
+      </select>
+    </div>
+    <div id="container"></div>
+    <script src="https://unpkg.com/konva@9/konva.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

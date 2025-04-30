@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Work Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root{
+  /* based Dream Haze 8 Palette by Klafooty https://lospec.com/palette-list/dream-haze-8 */
+  --col01: rgb(60, 66, 196);
+  --col02: rgb(110, 81, 200);
+  --col03: rgb(160, 101, 205);
+  --col04: rgb(206, 121, 210);
+  --col05: rgb(214, 143, 184);
+  --col06: rgb(221, 162, 163);
+  --col07: rgb(234, 196, 174);
+  --col08: rgb(244, 223, 190);
+  --border: solid 4px var(--col02);
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--col01);
+  color: var(--col08);
+}
+
+h1{
+  text-align: center;
+  color: var(--col08);
+  margin-bottom: 1rem;
+}
+
+.animHeading{
+  animation: headingAnim 4s alternate infinite;
+}
+
+@keyframes headingAnim {
+  from {
+    translate: -1vw 0;
+    color: var(--col02);
+  }
+  to {
+    translate: 1vw 0;
+    color: var(--col08);
+  }
+}
+
+.transPara{
+  transition: 1s;
+}
+.transPara:hover{
+  color: var(--col04);
+}
+
+.animPara:hover{
+  animation: headingAnim 1s linear alternate infinite;
+}
+
+#stageContainer{
+  background-color: var(--col08);
+}
+
+#performanceBox{
+  width: 500px; height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  border: var(--border);
+}
+
+#performanceMarker{
+  width: 10px; height: 10px;
+  transform-origin: 50% 50%;
+  background-color: var(--col04);
+}

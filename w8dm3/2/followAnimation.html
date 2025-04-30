@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/konva@9/konva.min.js"></script>
+
+    <script src="konvaSetup.js" defer></script>
+    <script src="helperFunctions.js" defer></script>
+
+    <script src="followAnimation.js" defer></script>
+
+    <title>Procedural Animation Examples</title>
+
+    <link rel="icon" type="image/png" href="./favicon.png">
+
+  </head>
+
+  <body>
+
+    <h1 id="pageHeading">Follow Animation Example</h1>
+
+    <p>Logic stored in followAnimation.js</p>
+
+    <div id="stageContainer"></div>
+
+    <label for="xPos">New X Pos:</label>
+    <input type="number" id="inputXPos" name="xPos" min="0" value="0" />
+    
+    <label for="yPos">New Y Pos:</label>
+    <input type="number" id="inputYPos" name="yPos" min="0" value="0" />
+
+    <button id="animationTrigger">Start Animation</button>
+
+    <a href="./randomAnimation.html">Previous Example</a>
+
+  </body>
+
+</html>

@@ -1,4 +1,4 @@
-const video = document.getElementById("custom-video-player"); // only once
+const video = document.getElementById("custom-video-player");
 const playPauseImg = document.querySelector("#play-pause-img");
 const progressContainer = document.querySelector(".progress-bar");
 const progressBar = document.getElementById("progress-bar-fill");
@@ -55,17 +55,38 @@ function toggleFullScreen() {
   }
 }
 
+//this is for when i exit fullscreen fullscreen it jumps to my orginial spot not to the top
+let scrollYBeforeFullscreen = 0;
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+    scrollYBeforeFullscreen = window.scrollY; // Save scroll position
+    video.parentElement.requestFullscreen().catch((err) => {
+      console.error(`Error attempting fullscreen: ${err.message}`);
+    });
+    fullScreenImg.src = "https://img.icons8.com/ios-glyphs/30/collapse.png";
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+document.addEventListener("fullscreenchange", () => {
+  if (!document.fullscreenElement) {
+    fullScreenImg.src =
+      "https://img.icons8.com/ios-glyphs/30/full-screen--v1.png";
+    window.scrollTo({ top: scrollYBeforeFullscreen, behavior: "instant" });
+  }
+});
+
+// All the buttons disappear after few seconds
 // Show/Hide controls
 function showControls() {
   document.querySelector(".custom-controls").style.opacity = "1";
   document.querySelector(".progress-bar").style.opacity = "1";
 }
-
 function hideControls() {
   document.querySelector(".custom-controls").style.opacity = "0";
   document.querySelector(".progress-bar").style.opacity = "0";
 }
-
 //reset hide time
 let controlTimeout;
 function resetControlTimeout() {
@@ -73,7 +94,6 @@ function resetControlTimeout() {
   clearTimeout(controlTimeout);
   controlTimeout = setTimeout(hideControls, 3000); // hide after 3 seconds
 }
-
 //add mouse interaction
 video.parentElement.addEventListener("mousemove", resetControlTimeout);
 video.addEventListener("play", resetControlTimeout);
@@ -106,6 +126,7 @@ document.addEventListener("mousemove", (e) => {
   }
 });
 
+// Time display functionality
 const progressThumb = document.getElementById("progress-thumb");
 const timeDisplay = document.getElementById("time-display");
 function formatTime(seconds) {
@@ -132,3 +153,4 @@ video.addEventListener("ended", () => {
     video.play();
   }
 });
+// I did not add fast foward function because i think enable to move the progress bar is enough

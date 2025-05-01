@@ -1,9 +1,15 @@
+/* I choose pink and purple as the color of the background base on cyberpunk color palatte. 
+These colors bring a sense of excitement, full of energy but also futuristic and modern, which
+really suitable for the selected concept. All the borders and box are added these two colors to
+feel like LED lights-typical of Cyberpunk style */
 :root {
-  --primary-bg-color: #f4f4f4;
-  --text-color: #333;
-  --main-bg-color: #333;
+  --primary-bg-color: #6b2323;
+  --text-color: #ffffff;
+  --main-bg-color: rgba(0, 0, 0, 0.6);
   --main-text-color: #fff;
   --main-btn-bg-color: #938989;
+  --neon-pink: #fe75fe;
+  --neon-purple: #7a04eb;
 }
 
 body,
@@ -14,69 +20,122 @@ ul {
   padding: 0;
 }
 
+#head {
+  padding-left: 20px;
+}
+
+/*styling for the box around the text to fit the background*/
+#box {
+  border: 2px solid #ff00ff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: inline-block;
+  text-shadow: 0 0 5px #ff00ff;
+  box-shadow: 0 0 10px #ff00ff;
+  font-size: 28px;
+  margin: 20px;
+  max-width: 800px;
+}
+/*styling for the text*/
+.text {
+  color: #fff;
+  font-size: 36px;
+  text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple);
+  font-family: "Turret Road", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  display: flex;
+  justify-content: flex-start;
+}
+
 body {
   font-family: "Arial", sans-serif;
-  background-color: var(--primary-bg-color);
   color: var(--text-color);
   line-height: 1.6;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+  background-attachment: fixed;
 }
 
-/* Add additional styles as needed */
-
-/* Create a container for the main content */
+/*styling for the video container*/
 .container {
   max-width: 1000px;
   width: 100%;
+  height: auto;
   padding: 10px;
+  border: 6px double rgb(220, 163, 200);
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px var(--neon-pink);
+  margin-bottom: 40px;
 }
 
-/* Header styling */
 header {
   background-color: var(--main-bg-color);
   color: var(--main-text-color);
   padding: 10px 0;
   text-align: center;
   width: 100%;
+  box-shadow: 0 0 15px var(--neon-purple);
 }
 
-/* Navigation styling */
-nav {
-  margin-top: 20px;
-  text-align: center;
+/*styling for the navigation bar*/
+.navbar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
-
-nav ul {
+.navbar ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
-  justify-content: center;
+  flex-direction: flex-end;
 }
-
-nav ul li {
+.navbar li {
+  margin: 10px 0;
+}
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+  font-family: "Roboto", sans-serif;
+  text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple);
+  transition: color 0.3s ease;
   margin-right: 20px;
 }
-
-nav a {
-  text-decoration: none;
-  color: var(--text-color);
+.navbar a:hover {
+  color: var(--neon-pink);
 }
 
-/* Media player styling */
+/*styling for the contact section*/
+.contact {
+  display: flex;
+  align-items: center;
+}
+.contact img {
+  margin-right: 10px;
+}
+
+/*styling for the media player*/
 .media-player {
   width: 100%;
   margin: 0 auto;
   position: relative;
 }
-
 .media-player video {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
+/*styling for the button*/
 .custom-controls {
   position: absolute;
   bottom: 10px;
@@ -86,8 +145,7 @@ nav a {
   justify-content: flex-start;
   padding: 0 20px;
   align-items: center;
-} /* make all the buttons and progress bar go inside the video */
-
+}
 .custom-controls img {
   width: 24px;
   height: 24px;
@@ -97,40 +155,39 @@ nav a {
   margin: 10px;
   margin-bottom: 20px;
   pointer-events: auto;
-} /* custom the buttons to make its look better */
+}
 
+/*styling for the progress bar*/
 .progress-bar {
   position: absolute;
   bottom: 0;
   left: 20px;
   right: 20px;
   height: 10px;
-  background-color: #333;
+  background-color: #444;
   z-index: 5;
   cursor: pointer;
-  background-color: #444;
   border-radius: 4px;
-} /* add the cursor to feel more interactive */
-
+}
 .progress-bar span {
   display: block;
   height: 100%;
   background-color: #4caf50;
   width: 0;
   transition: width 0.1s ease;
-} /*custom the pogress bar to make it looks better */
+}
 
 .custom-controls,
 .progress-bar {
   transition: opacity 0.5s ease;
   opacity: 1;
-} /* make the elements smoother when disappear */
+}
 
+/*styling for the time and the thumb on the bar*/
 .time-display {
   color: white;
   font-size: 14px;
-} /* set the time of the video*/
-
+}
 #progress-thumb {
   position: absolute;
   top: 50%;
@@ -140,13 +197,13 @@ nav a {
   background-color: white;
   border-radius: 50%;
   pointer-events: none;
-} /* the button on the progress bar which is enable to drag */
-
-/* Footer styling */
+}
+/*footer styling*/
 footer {
-  background-color: var(--main-bg-color);
-  color: var(--main-text-color);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
   text-align: center;
   padding: 10px 0;
   width: 100%;
+  box-shadow: 0 0 10px var(--neon-pink);
 }

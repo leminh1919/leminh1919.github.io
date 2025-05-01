@@ -1,10 +1,20 @@
+<!-- When i listened to the music and i watched the video, i feel the energy in  it which reminds me 
+ of my favorite concept-Cyberpunk. This style icon is bright neon lights that make everyone overwhelmed
+ My project will combine Cyberpunk style with my own creation of a fictional artist create an unique story
+ for this music video-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <!-- add the font family of your choice -->
+    <title>NEON LIGHT PARTY</title>
+    <!-- I choose this font because i think it fits the background and the concept futuristic of my project -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tektur:wght@400..900&family=Turret+Road:wght@200;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
@@ -12,21 +22,91 @@
   <body>
     <!-- Header Section -->
     <header>
-      <h1>Media Player Website</h1>
+      <!--Add header and navigation bar-->
+      <!--I know the navigation bar is not working but i don't think my website need this function.
+      However i still want to add its to make my website looks betters-->
+      <h1 class="text" id="head">NEON LIGHT PARTY</h1>
+      <nav class="navbar">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#artist">Artist</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#musicvideo">Music Video</a></li>
+        </ul>
+      </nav>
     </header>
 
-    <!-- Navigation Section -->
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Videos</a></li>
-        <li><a href="#">Music</a></li>
-        <li><a href="#">Playlists</a></li>
-        <!-- Add or remove navigation items as needed -->
-      </ul>
-    </nav>
-
     <!-- Main Content Section -->
+    <!--Add different section-->
+    <!--At first i want to find more video or image to fit the concept but i think just one video is enough.
+    So i focus on other aspects of the context i choose. I create a fictional artist and a story around her
+    her music career to make the music video more interesting-->
+    <section>
+      <div id="box">
+        <p class="text">ABOUT</p>
+        <p>
+          Neon Light is a vibrant music video bursting with color, energy, and
+          futuristic flair. With retro-inspired aesthetics and a modern twist,
+          it captures the essence of nightlife and self-expression. It’s a bold,
+          immersive celebration of sound, movement, and glowing creativity.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div id="box">
+        <p class="text">ARTIST</p>
+        <p>
+          Lila Harper aka Neon Blaze in 1996, is an electro-pop and synthwave
+          artist known for her neon-inspired aesthetic and futuristic sound.
+          With her debut album Electric Dreams (2019), she captivated listeners
+          with catchy synth-pop tracks. Blending 80s nostalgia and modern
+          electro, Neon Blaze’s immersive live shows and fashion collaborations
+          have made her a pioneering figure in the neon music scene.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div id="box">
+        <p class="text">CONTACT</p>
+        <div class="contact">
+          <img
+            src="https://img.icons8.com/ios-filled/50/tiktok--v1.png"
+            alt="tiktok"
+          />
+          <p>realneon1109</p>
+        </div>
+
+        <div class="contact">
+          <img
+            src="https://img.icons8.com/ios-filled/50/facebook-new.png"
+            alt="facebook"
+          />
+          <p>Lila Harper</p>
+        </div>
+
+        <div class="contact">
+          <img
+            src="https://img.icons8.com/ios-filled/50/instagram-new--v1.png"
+            alt="instagram"
+          />
+          <p>lila_harper</p>
+        </div>
+
+        <div class="contact">
+          <img
+            src="https://img.icons8.com/ios-filled/50/youtube-play.png"
+            alt="youtube"
+          />
+          <p>Neon Blaze</p>
+        </div>
+      </div>
+    </section>
+
+    <div id="box">
+      <p class="text">MUSIC VIDEO</p>
+    </div>
     <main class="container">
       <!-- Media Player Section -->
       <div class="media-player">
@@ -37,6 +117,7 @@
           />
         </video>
         <div class="custom-controls">
+          <!--Add play icon-->
           <img
             onclick="togglePlayPause()"
             id="play-pause-img"
@@ -45,7 +126,7 @@
             width="24"
             height="24"
           />
-
+          <!-- Add mute/unmute icon -->
           <img
             onclick="toggleMuteUnmute()"
             id="mute-unmute-img"
@@ -54,8 +135,7 @@
             width="24"
             height="24"
           />
-          <!--add mute/unmute icon-->
-
+          <!--Add repeat icon-->
           <img
             onclick="toggleRepeat()"
             id="repeat-img"
@@ -64,8 +144,7 @@
             width="24"
             height="24"
           />
-          <!--add repeat button-->
-
+          <!-- Add fullscreen icon -->
           <img
             onclick="toggleFullScreen()"
             id="full-screen-img"
@@ -74,9 +153,7 @@
             width="24"
             height="24"
           />
-          <!--add fullscreen icon-->
-
-          <!-- add the missing buttons or functionality here -->
+          <!-- Add time and custom the progress bar -->
           <div class="time-display" id="time-display">0:00 / 0:00</div>
           <div class="progress-bar">
             <span id="progress-bar-fill"></span>
@@ -84,21 +161,51 @@
           </div>
         </div>
       </div>
-
-      <!-- Additional Content Section -->
-      <section>
-        <h2>Additional Content</h2>
-        <p>This is where you can showcase any other relevant content.</p>
-        <!-- Add more content as needed -->
-      </section>
     </main>
 
     <!-- Footer Section -->
     <footer>
-      <p>&copy; 2024 Media Player Website. All rights reserved.</p>
+      <p>&copy; 2025 Media Player Website. All rights reserved.</p>
       <a href="https://icons8.com/icon/59862/play">Play</a> icon by
       <a href="https://icons8.com">Icons8</a>
       <a href="https://icons8.com/icon/61012/pause">Pause</a> icon by
+      <a href="https://icons8.com">Icons8</a>
+      <a href="https://img.icons8.com/ios-filled/50/youtube-play.png"
+        >Facebook</a
+      >
+      icon by
+      <a href="https://icons8.com">Icons8</a>
+      <a href="https://img.icons8.com/ios-glyphs/30/full-screen--v1.png"
+        >Fullscreen</a
+      >
+      icon by
+      <a href="https://icons8.com">Icons8</a>
+      <a href="https://img.icons8.com/ios-glyphs/30/repeat.png">Repeat</a> icon
+      by
+      <a href="https://icons8.com">Icons8</a>
+      <a href="https://img.icons8.com/ios-glyphs/30/high-volume--v1.png"
+        >Unmute</a
+      >
+      icon by
+      <a href="https://icons8.com">Icons8</a>
+      <a href="https://img.icons8.com/ios-glyphs/30/mute--v1.png">Mute</a> icon
+      by
+      <a href="https://icons8.com">Icons8</a>
+      <a href="https://img.icons8.com/ios-filled/50/youtube-play.png"
+        >Youtube</a
+      >
+      icon by
+      <a href="https://icons8.com">Icons8</a>
+      <a href="https://img.icons8.com/ios-filled/50/instagram-new--v1.png"
+        >Instagram</a
+      >
+      icon by
+      <a href="https://icons8.com">Icons8</a>
+      <a href="https://img.icons8.com/ios-filled/50/tiktok--v1.png">Tiktok</a>
+      icon by
+      <a href="https://icons8.com">Icons8</a>
+      <a href="https://img.icons8.com/ios-glyphs/30/collapse.png">Collaspe</a>
+      icon by
       <a href="https://icons8.com">Icons8</a>
     </footer>
   </body>

@@ -4,7 +4,10 @@ let currentFormationName = "man to man (default)";
 const arrows = [];
 const ghosts = [];
 const moveHistory = [];
-let currentActionMode = "move";
+let allowMovePlayer = true;
+let allowMoveBall = true;
+let allowScreen = false;
+let allowDribble = false;
 
 const stage = new Konva.Stage({
   container: "container",
@@ -91,100 +94,27 @@ function loadPlayers() {
       });
 
       player.on("dragend", () => {
+        if (!allowMovePlayer && !allowScreen) return;
+
         const start = player.startPos;
         const end = { x: player.x(), y: player.y() };
         const color = i < 5 ? "red" : "blue";
 
-        if (currentActionMode === "dribble") {
-          const ballPos = ball.position();
-          let closestIndex = -1;
-          let minDist = Infinity;
-
-          for (let j = 0; j < 5; j++) {
-            const redPlayer = playerNodes[j];
-            const dx = redPlayer.x() - ballPos.x;
-            const dy = redPlayer.y() - ballPos.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < minDist) {
-              minDist = dist;
-              closestIndex = j;
-            }
-          }
-
-          if (i !== closestIndex) {
-            player.position(start); // Reset position if not closest
-            layer.draw();
-            return; // Skip the rest
-          }
-
-          // Calculate offset and move ball along with player
-          const offsetX = end.x - start.x;
-          const offsetY = end.y - start.y;
-          const oldBallPos = { x: ball.x(), y: ball.y() };
-          ball.position({ x: ball.x() + offsetX, y: ball.y() + offsetY });
-
-          // Draw zigzag arrow (dribble)
-          const arrow = drawZigzagArrow(start, end, color);
-
-          // Add ghosts for both player and ball
-          const playerGhost = player.clone({
-            draggable: false,
-            opacity: 0.5,
-            listening: false,
-          });
-          const ballGhost = ball.clone({
-            draggable: false,
-            opacity: 0.5,
-            listening: false,
-          });
-
-          layer.add(playerGhost);
-          layer.add(ballGhost);
-          ghosts.push(playerGhost);
-          ghosts.push(ballGhost);
-          layer.moveToBottom(playerGhost);
-          layer.moveToBottom(ballGhost);
-
-          // Save move history for undo
-          moveHistory.push({
-            node: player,
-            from: start,
-            to: end,
-            ghost: playerGhost,
-            arrow: arrow,
-          });
-
-          moveHistory.push({
-            node: ball,
-            from: oldBallPos,
-            to: ball.position(),
-            ghost: ballGhost,
-            arrow: null,
-          });
-
-          layer.draw();
+        let visual;
+        if (allowScreen) {
+          visual = drawScreen(start, end, color);
         } else {
-          // Normal move and screen modes
-          let visual;
-          if (currentActionMode === "screen") {
-            visual = drawScreen(start, end, color);
-          } else {
-            visual = drawArrow(start, end, color, 32);
-          }
-
-          moveHistory.push({
-            node: player,
-            from: start,
-            to: end,
-            ghost: ghosts[ghosts.length - 1],
-            arrow: visual,
-          });
-
-          layer.draw();
+          visual = drawArrow(start, end, color, 32);
         }
-      });
 
-      player.startPos = { x: player.x(), y: player.y() };
+        moveHistory.push({
+          node: player,
+          from: start,
+          to: end,
+          ghost: ghosts[ghosts.length - 1],
+          arrow: visual,
+        });
+      });
 
       playerNodes[i] = player;
       layer.add(player);
@@ -219,17 +149,25 @@ ballImg.onload = () => {
     layer.moveToBottom(ghost);
     layer.draw();
   });
-
   ball.on("dragend", () => {
+    if (!allowMoveBall && !allowDribble) return;
+
     const start = ball.startPos;
     const end = { x: ball.x(), y: ball.y() };
-    const arrow = drawArrow(start, end, "black", 18);
+
+    let visual;
+    if (allowDribble) {
+      visual = drawDribble(start, end, "black", 18);
+    } else {
+      visual = drawArrow(start, end, "black", 18);
+    }
+
     moveHistory.push({
       node: ball,
       from: start,
       to: end,
       ghost: ghosts[ghosts.length - 1],
-      arrow: arrow,
+      arrow: visual,
     });
   });
 
@@ -353,46 +291,43 @@ function drawScreen(from, to, color, radius = 32) {
   return group;
 }
 
-function drawZigzagArrow(from, to, color, segmentLength = 20, amplitude = 10) {
+function drawDribble(from, to, color = "black", radius = 18) {
   const dx = to.x - from.x;
   const dy = to.y - from.y;
-  const distance = Math.sqrt(dx * dx + dy * dy);
   const angle = Math.atan2(dy, dx);
 
-  const radius = 32;
   const startX = from.x + radius * Math.cos(angle) + radius;
   const startY = from.y + radius * Math.sin(angle) + radius;
   const endX = to.x - radius * Math.cos(angle) + radius;
   const endY = to.y - radius * Math.sin(angle) + radius;
 
-  const dx2 = endX - startX;
-  const dy2 = endY - startY;
-  const totalLength = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-  const numSegments = Math.floor(totalLength / segmentLength);
-  const points = [];
-
-  for (let i = 0; i <= numSegments; i++) {
-    const t = i / numSegments;
-    const x = startX + t * dx2;
-    const y = startY + t * dy2;
-    const offset = (i % 2 === 0 ? -1 : 1) * amplitude;
-    const perpX = x + offset * Math.cos(angle + Math.PI / 2);
-    const perpY = y + offset * Math.sin(angle + Math.PI / 2);
-    points.push(perpX, perpY);
-  }
-
+  // Main line (same as move)
   const line = new Konva.Line({
-    points: points,
+    points: [startX, startY, endX, endY],
     stroke: color,
     strokeWidth: 3,
-    lineCap: "round",
-    lineJoin: "round",
   });
 
-  layer.add(line);
-  arrows.push(line);
+  const squareSize = 12;
+  const square = new Konva.Rect({
+    width: squareSize,
+    height: squareSize,
+    fill: color,
+    offsetX: squareSize / 2,
+    offsetY: squareSize / 2,
+    x: endX,
+    y: endY,
+    rotation: (angle * 180) / Math.PI,
+  });
+
+  const group = new Konva.Group();
+  group.add(line);
+  group.add(square);
+
+  layer.add(group);
+  arrows.push(group);
   layer.draw();
-  return line;
+  return group;
 }
 
 function undoLastAction() {
@@ -418,18 +353,40 @@ function undoLastAction() {
   layer.draw();
 }
 
-document.getElementById("moveButton").addEventListener("click", () => {
-  currentActionMode = "move";
+function resetModes() {
+  allowMovePlayer = false;
+  allowMoveBall = false;
+  allowScreen = false;
+  allowDribble = false;
+}
+
+document.getElementById("movePlayerButton").addEventListener("click", () => {
+  resetModes();
+  allowMovePlayer = true;
+  allowDribble = true;
+  allowMoveBall = true;
+});
+
+document.getElementById("moveBallButton").addEventListener("click", () => {
+  resetModes();
+  allowMoveBall = true;
+  allowMovePlayer = true;
+  allowScreen = true;
 });
 
 document.getElementById("screenButton").addEventListener("click", () => {
-  currentActionMode = "screen";
+  resetModes();
+  allowDribble = true;
+  allowScreen = true;
+  allowMoveBall = true;
 });
 
 document.getElementById("dribbleButton").addEventListener("click", () => {
-  currentActionMode = "dribble";
+  resetModes();
+  allowDribble = true;
+  allowMovePlayer = true;
+  allowScreen = true;
 });
-
 const formations = {
   "man to man (default)": {
     A: defaultPositions.slice(0, 5),

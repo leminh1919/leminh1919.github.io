@@ -3,12 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Basketball Tatics Tool</title>
+    <title>Basketball Tactics Tool</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/konva@9/konva.min.js"></script>
   </head>
   <body>
-    <div style="text-align: center; margin-bottom: 10px">
-      <label for="combinedFormation">Full Formation:</label>
+    <div id="controls">
+      <label for="combinedFormation">Select formation :</label>
       <select id="combinedFormation" onchange="applyCombinedFormation()">
         <option value="man to man (default)">man to man (default)</option>
         <option value="zone defense 2-3">zone defense 2-3</option>
@@ -17,9 +18,22 @@
         <option value="zone defense 2-1-2">zone defense 2-1-2</option>
         <option value="zone defense 1-2-2">zone defense 1-2-2</option>
       </select>
+      <button onclick="resetToCurrentFormation()">Reset</button>
+      <button onclick="undoLastAction()">Undo</button>
     </div>
-    <div id="container"></div>
-    <script src="https://unpkg.com/konva@9/konva.min.js"></script>
+
+    <div id="wrapper">
+      <div id="container"></div>
+    </div>
+
+    <div id="controls">
+      <button id="moveButton">Move</button>
+      <button id="dirbbleButton">Dribble</button>
+      <button id="playButton">Play</button>
+      <button id="shotButton">Shot</button>
+      <button id="screenButton">Screen</button>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>

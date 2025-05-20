@@ -13,10 +13,10 @@ body {
 
 #wrapper {
   width: fit-content;
-  margin-top: 20px;
+  margin-top: 10px;
   transform: scale(1.2);
   transform-origin: top center;
-  margin-bottom: 110px;
+  margin-bottom: 115px;
 }
 
 #container {
@@ -103,14 +103,18 @@ button.clicked {
 .toolbar {
   border: 1px solid #fff3f3;
   border-radius: 10px;
-  padding: 20px;
-  margin-top: 20px;
+  padding: 15px;
+  margin-top: 10px;
   width: fit-content;
+}
+.bottom-toolbar {
+  margin-bottom: 10px;
 }
 .top-toolbar {
   display: flex;
   align-items: center;
   gap: 15px;
+  margin-bottom: 10px;
 }
 
 #moreInfo {

@@ -108,13 +108,14 @@ button.clicked {
   width: fit-content;
 }
 .bottom-toolbar {
-  margin-bottom: 10px;
+  margin-top: 15px;
 }
 .top-toolbar {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  margin-top: 13px;
 }
 
 #moreInfo {

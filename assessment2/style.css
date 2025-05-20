@@ -13,18 +13,14 @@ body {
 #wrapper {
   width: fit-content;
   margin-top: 20px;
-  transform: scale(1.2); /* Slightly bigger */
+  transform: scale(1.2);
   transform-origin: top center;
-  margin-bottom: 20px;
+  margin-bottom: 110px;
 }
 
 #container {
   border: 2px solid #333;
   box-shadow: 0 0 12px rgba(227, 170, 26, 0.2);
-}
-
-#controls {
-  padding-top: 40px;
 }
 
 label {
@@ -46,16 +42,13 @@ button {
   font-size: 1.5rem;
   padding: 10px 20px;
   background-color: #ffc73a;
-  margin-top: 80px;
   font-weight: bold;
-  box-shadow: 0 0 8px #ffc73a;
 }
 
 button.active-mode {
-  background-color: #e3aa1a; /* Highlight color */
+  background-color: #e3aa1a;
   color: black;
   font-weight: bold;
-  box-shadow: 0 0 8px #e3aa1a;
 }
 
 @keyframes buttonClickEffect {
@@ -72,4 +65,88 @@ button.active-mode {
 
 button.clicked {
   animation: buttonClickEffect 0.3s ease;
+}
+
+.button-container {
+  position: relative;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.info {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: left;
+  border-radius: 5px;
+  padding: 6px 8px;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 17px;
+  line-height: 1.4;
+  white-space: nowrap;
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+.button-container:hover .info {
+  visibility: visible;
+  opacity: 1;
+}
+
+.toolbar {
+  border: 1px solid #fff3f3;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  width: fit-content;
+}
+.top-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#moreInfo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  margin-top: 20px;
+}
+
+.icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-info {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: left;
+  padding: 6px 10px;
+  border-radius: 6px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  white-space: normal;
+  width: 250spx;
+  word-wrap: break-word;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.icon-container:hover .icon-info {
+  visibility: visible;
+  opacity: 1;
 }

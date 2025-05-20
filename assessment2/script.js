@@ -8,6 +8,7 @@ let allowMovePlayer = true;
 let allowMoveBall = true;
 let allowScreen = false;
 let allowDribble = false;
+let allowTrap = false;
 
 const stage = new Konva.Stage({
   container: "container",
@@ -50,6 +51,7 @@ const playerImages = [
   "C2.png",
 ];
 
+//Add court and icon
 courtImage.onload = () => {
   const court = new Konva.Image({
     image: courtImage,
@@ -63,6 +65,7 @@ courtImage.onload = () => {
   loadBall();
 };
 
+//Drag player
 function loadPlayers() {
   const playerSize = 64;
   for (let i = 0; i < playerImages.length; i++) {
@@ -94,15 +97,17 @@ function loadPlayers() {
       });
 
       player.on("dragend", () => {
-        if (!allowMovePlayer && !allowScreen) return;
+        if (!allowMovePlayer && !allowScreen && !allowTrap) return;
 
         const start = player.startPos;
         const end = { x: player.x(), y: player.y() };
         const color = i < 5 ? "red" : "blue";
 
         let visual;
-        if (allowScreen) {
+        if (playerMode === "screen") {
           visual = drawScreen(start, end, color);
+        } else if (playerMode === "trap") {
+          visual = drawTrap(start, end, color);
         } else {
           visual = drawArrow(start, end, color, 32);
         }
@@ -123,6 +128,7 @@ function loadPlayers() {
   }
 }
 
+//Drag Ball
 const ballImg = new Image();
 ballImg.src = "images/ball.png";
 ballImg.onload = () => {
@@ -156,7 +162,7 @@ ballImg.onload = () => {
     const end = { x: ball.x(), y: ball.y() };
 
     let visual;
-    if (allowDribble) {
+    if (ballMode === "dribble") {
       visual = drawDribble(start, end, "black", 18);
     } else {
       visual = drawArrow(start, end, "black", 18);
@@ -175,17 +181,16 @@ ballImg.onload = () => {
   layer.draw();
 };
 
+//Choose Formation Function
 function applyCombinedFormation() {
   const formation = document.getElementById("combinedFormation").value;
   currentFormationName = formation;
 
-  // Reset the entire layout before applying new formation
-  resetToCurrentFormation(); // Call the reset function
+  resetToCurrentFormation();
 
   const config = formations[formation];
   if (!config) return;
 
-  // Apply the new formation positions
   for (let i = 0; i < 5; i++) {
     if (playerNodes[i]) playerNodes[i].position(config.A[i]);
     if (playerNodes[i + 5]) playerNodes[i + 5].position(config.B[i]);
@@ -198,12 +203,11 @@ function applyCombinedFormation() {
   layer.draw();
 }
 
+//Reset Function
 function resetToCurrentFormation() {
-  // Clear ghosts
   ghosts.forEach((ghost) => ghost.destroy());
   ghosts.length = 0;
 
-  // Clear move history
   moveHistory.length = 0;
 
   const config = formations[currentFormationName];
@@ -218,13 +222,21 @@ function resetToCurrentFormation() {
     ball.position(config.ball);
   }
 
-  // Clear arrows
   arrows.forEach((arrow) => arrow.destroy());
   arrows.length = 0;
 
   layer.draw();
 }
 
+//Enable cliked effect only when click on reset button, not when use reset fuction
+function handleResetButtonClick() {
+  resetButton.classList.add("clicked");
+  setTimeout(() => resetButton.classList.remove("clicked"), 300);
+  resetToCurrentFormation();
+}
+resetButton.addEventListener("click", handleResetButtonClick);
+
+//Player and Ball Move Function
 function drawArrow(from, to, color, radius = 32) {
   const dx = to.x - from.x;
   const dy = to.y - from.y;
@@ -250,6 +262,7 @@ function drawArrow(from, to, color, radius = 32) {
   return arrow;
 }
 
+//Player Screen Function
 function drawScreen(from, to, color, radius = 32) {
   const dx = to.x - from.x;
   const dy = to.y - from.y;
@@ -260,7 +273,6 @@ function drawScreen(from, to, color, radius = 32) {
   const endX = to.x - radius * Math.cos(angle) + radius;
   const endY = to.y - radius * Math.sin(angle) + radius;
 
-  // Main line (same as move)
   const line = new Konva.Line({
     points: [startX, startY, endX, endY],
     stroke: color,
@@ -268,7 +280,7 @@ function drawScreen(from, to, color, radius = 32) {
   });
 
   const capLength = 24;
-  const capAngle = angle + Math.PI / 2; // Perpendicular to direction
+  const capAngle = angle + Math.PI / 2;
 
   const capStartX = endX - (capLength / 2) * Math.cos(capAngle);
   const capStartY = endY - (capLength / 2) * Math.sin(capAngle);
@@ -291,6 +303,66 @@ function drawScreen(from, to, color, radius = 32) {
   return group;
 }
 
+//Player Trap Function
+function drawTrap(from, to, color, radius = 32) {
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const angle = Math.atan2(dy, dx);
+
+  const startX = from.x + radius * Math.cos(angle) + radius;
+  const startY = from.y + radius * Math.sin(angle) + radius;
+  const endX = to.x - radius * Math.cos(angle) + radius;
+  const endY = to.y - radius * Math.sin(angle) + radius;
+
+  const line = new Konva.Line({
+    points: [startX, startY, endX, endY],
+    stroke: color,
+    strokeWidth: 3,
+  });
+
+  const size = 9;
+
+  const centerX = endX;
+  const centerY = endY;
+
+  function rotatePoint(x, y, angle) {
+    return {
+      x: x * Math.cos(angle) - y * Math.sin(angle),
+      y: x * Math.sin(angle) + y * Math.cos(angle),
+    };
+  }
+
+  let p1 = rotatePoint(-size, -size, angle);
+  let p2 = rotatePoint(size, size, angle);
+
+  const cross1 = new Konva.Line({
+    points: [centerX + p1.x, centerY + p1.y, centerX + p2.x, centerY + p2.y],
+    stroke: color,
+    strokeWidth: 3,
+  });
+
+  p1 = rotatePoint(-size, size, angle);
+  p2 = rotatePoint(size, -size, angle);
+
+  const cross2 = new Konva.Line({
+    points: [centerX + p1.x, centerY + p1.y, centerX + p2.x, centerY + p2.y],
+    stroke: color,
+    strokeWidth: 3,
+  });
+
+  const group = new Konva.Group();
+  group.add(line);
+  group.add(cross1);
+  group.add(cross2);
+
+  layer.add(group);
+  arrows.push(group);
+  layer.draw();
+
+  return group;
+}
+
+//Ball Dribble Function
 function drawDribble(from, to, color = "black", radius = 18) {
   const dx = to.x - from.x;
   const dy = to.y - from.y;
@@ -301,7 +373,6 @@ function drawDribble(from, to, color = "black", radius = 18) {
   const endX = to.x - radius * Math.cos(angle) + radius;
   const endY = to.y - radius * Math.sin(angle) + radius;
 
-  // Main line (same as move)
   const line = new Konva.Line({
     points: [startX, startY, endX, endY],
     stroke: color,
@@ -330,7 +401,11 @@ function drawDribble(from, to, color = "black", radius = 18) {
   return group;
 }
 
+//Undo Function
 function undoLastAction() {
+  undoButton.classList.add("clicked");
+  setTimeout(() => undoButton.classList.remove("clicked"), 300);
+
   const lastMove = moveHistory.pop();
   if (!lastMove) return;
 
@@ -353,40 +428,158 @@ function undoLastAction() {
   layer.draw();
 }
 
-function resetModes() {
+//Default mode when page load
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("moveBallButton").classList.add("active-mode");
+  document.getElementById("movePlayerButton").classList.add("active-mode");
+
+  allowMoveBall = true;
+  allowMovePlayer = true;
+});
+
+let playerMode = null; // "move", "screen", "trap"
+
+let ballMode = null; // "move", "dribble"
+
+function resetPlayerMode() {
   allowMovePlayer = false;
-  allowMoveBall = false;
   allowScreen = false;
+  allowTrap = false;
+}
+
+function resetBallMode() {
+  allowMoveBall = false;
   allowDribble = false;
 }
 
-document.getElementById("movePlayerButton").addEventListener("click", () => {
-  resetModes();
-  allowMovePlayer = true;
-  allowDribble = true;
-  allowMoveBall = true;
-});
+function clearActiveButtons(ids) {
+  ids.forEach((id) =>
+    document.getElementById(id).classList.remove("active-mode")
+  );
+}
 
-document.getElementById("moveBallButton").addEventListener("click", () => {
-  resetModes();
-  allowMoveBall = true;
+//Add mode for each button
+//Player
+const playerButtons = ["movePlayerButton", "screenButton", "trapButton"];
+document.getElementById("movePlayerButton").addEventListener("click", () => {
+  resetPlayerMode();
+  playerMode = "move";
   allowMovePlayer = true;
-  allowScreen = true;
+
+  clearActiveButtons(playerButtons);
+  document.getElementById("movePlayerButton").classList.add("active-mode");
 });
 
 document.getElementById("screenButton").addEventListener("click", () => {
-  resetModes();
-  allowDribble = true;
+  resetPlayerMode();
+  playerMode = "screen";
   allowScreen = true;
+  allowMovePlayer = true;
+
+  clearActiveButtons(playerButtons);
+  document.getElementById("screenButton").classList.add("active-mode");
+});
+
+document.getElementById("trapButton").addEventListener("click", () => {
+  resetPlayerMode();
+  playerMode = "trap";
+  allowTrap = true;
+  allowMovePlayer = true;
+
+  clearActiveButtons(playerButtons);
+  document.getElementById("trapButton").classList.add("active-mode");
+});
+
+//Ball
+const ballButtons = ["moveBallButton", "dribbleButton"];
+document.getElementById("moveBallButton").addEventListener("click", () => {
+  resetBallMode();
+  ballMode = "move";
   allowMoveBall = true;
+
+  clearActiveButtons(ballButtons);
+  document.getElementById("moveBallButton").classList.add("active-mode");
 });
 
 document.getElementById("dribbleButton").addEventListener("click", () => {
-  resetModes();
+  resetBallMode();
+  ballMode = "dribble";
   allowDribble = true;
-  allowMovePlayer = true;
-  allowScreen = true;
+  allowMoveBall = true;
+
+  clearActiveButtons(ballButtons);
+  document.getElementById("dribbleButton").classList.add("active-mode");
 });
+
+//Add animation and play button
+document.getElementById("playButton").addEventListener("click", async () => {
+  playButton.classList.add("clicked");
+  setTimeout(() => playButton.classList.remove("clicked"), 300);
+  playerNodes.forEach((p) => p.draggable(false));
+  if (ball) ball.draggable(false);
+
+  const nodeMoves = new Map();
+  for (const move of moveHistory) {
+    const { node, from, to } = move;
+    if (!nodeMoves.has(node)) {
+      nodeMoves.set(node, []);
+    }
+    nodeMoves.get(node).push({ from, to });
+  }
+
+  const animationPromises = [];
+
+  for (const [node, moves] of nodeMoves.entries()) {
+    let currentPos = { x: node.x(), y: node.y() };
+    let chain = Promise.resolve();
+
+    for (const move of moves) {
+      const { from, to } = move;
+
+      if (currentPos.x !== from.x || currentPos.y !== from.y) {
+        chain = chain.then(() => animateTo(node, from, 0.01));
+      }
+
+      if (from.x !== to.x || from.y !== to.y) {
+        chain = chain.then(() => animateTo(node, to, 1.5));
+        currentPos = { ...to };
+      }
+    }
+
+    animationPromises.push(chain);
+  }
+
+  await Promise.all(animationPromises);
+
+  arrows.forEach((arrow) => arrow.destroy());
+  arrows.length = 0;
+
+  ghosts.forEach((ghost) => ghost.destroy());
+  ghosts.length = 0;
+
+  moveHistory.length = 0;
+  layer.draw();
+
+  playerNodes.forEach((p) => p.draggable(true));
+  if (ball) ball.draggable(true);
+});
+
+function animateTo(node, targetPos, duration = 1) {
+  return new Promise((resolve) => {
+    const tween = new Konva.Tween({
+      node: node,
+      duration: duration,
+      x: targetPos.x,
+      y: targetPos.y,
+      onFinish: () => {
+        resolve();
+      },
+    });
+    tween.play();
+  });
+}
+
+//Add positions for each formation
 const formations = {
   "man to man (default)": {
     A: defaultPositions.slice(0, 5),

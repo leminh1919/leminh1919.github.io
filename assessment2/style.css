@@ -46,11 +46,30 @@ button {
   font-size: 1.5rem;
   padding: 10px 20px;
   background-color: #ffc73a;
-  margin-top: 80px; /* Adds some space above the button */
+  margin-top: 80px;
+  font-weight: bold;
+  box-shadow: 0 0 8px #ffc73a;
 }
 
-button.active {
-  background-color: #007bff;
-  color: white;
-  border: 2px solid #0056b3;
+button.active-mode {
+  background-color: #e3aa1a; /* Highlight color */
+  color: black;
+  font-weight: bold;
+  box-shadow: 0 0 8px #e3aa1a;
+}
+
+@keyframes buttonClickEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+button.clicked {
+  animation: buttonClickEffect 0.3s ease;
 }

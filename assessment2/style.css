@@ -151,3 +151,12 @@ button.clicked {
   visibility: visible;
   opacity: 1;
 }
+
+#all {
+  transform: scale(0.8);
+  transform-origin: top center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} /*i accidently built everything at zoom 80% */

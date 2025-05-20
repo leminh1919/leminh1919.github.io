@@ -9,81 +9,82 @@
     <script src="https://unpkg.com/konva@9/konva.min.js"></script>
   </head>
   <body>
-    <div class="top-toolbar">
-      <div class="icon-container">
-        <img src="images/moreinfo.png" alt="moreInfo" id="moreInfo" />
-        <div class="icon-info">
-          <p>
-            Drag and drop the player and the ball icons to make your own tatics.
-            You can switch between different actions the way you want. The sky
-            is the limit, enjoy!
-          </p>
+    <div id="all">
+      <div class="top-toolbar">
+        <div class="icon-container">
+          <img src="images/moreinfo.png" alt="moreInfo" id="moreInfo" />
+          <div class="icon-info">
+            <p>
+              Drag and drop the player and the ball icons to make your own
+              tatics. You can switch between different actions the way you want.
+              The sky is the limit, enjoy!
+            </p>
+          </div>
+        </div>
+        <div id="controls" class="toolbar">
+          <label for="combinedFormation">Select formation :</label>
+          <select id="combinedFormation" onchange="applyCombinedFormation()">
+            <option value="man to man (default)">man to man (default)</option>
+            <option value="zone defense 2-3">zone defense 2-3</option>
+            <option value="zone defense 3-2">zone defense 3-2</option>
+            <option value="zone defense 1-3-1">zone defense 1-3-1</option>
+            <option value="zone defense 2-1-2">zone defense 2-1-2</option>
+            <option value="zone defense 1-2-2">zone defense 1-2-2</option>
+          </select>
+          <button id="resetButton" onclick="resetToCurrentFormation()">
+            Reset
+          </button>
+          <button id="undoButton" onclick="undoLastAction()">Undo</button>
         </div>
       </div>
+
+      <div id="wrapper">
+        <div id="container"></div>
+      </div>
+
       <div id="controls" class="toolbar">
-        <label for="combinedFormation">Select formation :</label>
-        <select id="combinedFormation" onchange="applyCombinedFormation()">
-          <option value="man to man (default)">man to man (default)</option>
-          <option value="zone defense 2-3">zone defense 2-3</option>
-          <option value="zone defense 3-2">zone defense 3-2</option>
-          <option value="zone defense 1-3-1">zone defense 1-3-1</option>
-          <option value="zone defense 2-1-2">zone defense 2-1-2</option>
-          <option value="zone defense 1-2-2">zone defense 1-2-2</option>
-        </select>
-        <button id="resetButton" onclick="resetToCurrentFormation()">
-          Reset
-        </button>
-        <button id="undoButton" onclick="undoLastAction()">Undo</button>
-      </div>
-    </div>
+        <label for="moveBallButton">Ball movement :</label>
 
-    <div id="wrapper">
-      <div id="container"></div>
-    </div>
-
-    <div id="controls" class="toolbar">
-      <label for="moveBallButton">Ball movement :</label>
-
-      <div class="button-container">
-        <button id="moveBallButton">Move Ball</button>
-        <div class="info">
-          <p>Pass or shot the ball</p>
+        <div class="button-container">
+          <button id="moveBallButton">Move Ball</button>
+          <div class="info">
+            <p>Pass or shot the ball</p>
+          </div>
         </div>
-      </div>
 
-      <div class="button-container">
-        <button id="dribbleButton">Dribble</button>
-        <div class="info">
-          <p>Dribble the ball (move with an attacker)</p>
+        <div class="button-container">
+          <button id="dribbleButton">Dribble</button>
+          <div class="info">
+            <p>Dribble the ball (move with an attacker)</p>
+          </div>
         </div>
-      </div>
 
-      <button id="playButton">Play</button>
+        <button id="playButton">Play</button>
 
-      <label for="movePlayerButton">Player Movement :</label>
+        <label for="movePlayerButton">Player Movement :</label>
 
-      <div class="button-container">
-        <button id="movePlayerButton">Move Player</button>
-        <div class="info">
-          <p>Move the player (with or without the ball)</p>
+        <div class="button-container">
+          <button id="movePlayerButton">Move Player</button>
+          <div class="info">
+            <p>Move the player (with or without the ball)</p>
+          </div>
         </div>
-      </div>
 
-      <div class="button-container">
-        <button id="trapButton">Trap</button>
-        <div class="info">
-          <p>Double-team (with two defenders)</p>
+        <div class="button-container">
+          <button id="trapButton">Trap</button>
+          <div class="info">
+            <p>Double-team (with two defenders)</p>
+          </div>
         </div>
-      </div>
 
-      <div class="button-container">
-        <button id="screenButton">Screen</button>
-        <div class="info">
-          <p>Block a defender (with an attacker)</p>
+        <div class="button-container">
+          <button id="screenButton">Screen</button>
+          <div class="info">
+            <p>Block a defender (with an attacker)</p>
+          </div>
         </div>
       </div>
     </div>
-
     <script src="script.js"></script>
   </body>
 </html>

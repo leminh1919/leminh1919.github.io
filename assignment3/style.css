@@ -1,0 +1,130 @@
+body {
+  background-color: #1a1a1a;
+  margin: 0;
+  padding: 40px;
+  font-family: "Orbitron", sans-serif;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+  flex-wrap: nowrap; /* Force single-line layout */
+  overflow-x: auto;
+}
+
+.top-text-good {
+  color: white;
+  font-size: 70px;
+  font-weight: bold;
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.top-text-bad {
+  color: #ed2124;
+  font-size: 70px;
+  font-weight: bold;
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.info-box-good {
+  background-color: #2f2f2f;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  padding: 0 20px;
+  color: white;
+  font-family: "Orbitron", sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.info-box-bad {
+  background-color: #391212;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  padding: 0 20px;
+  max-width: 500px;
+  color: #ed2124;
+  font-family: "Orbitron", sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+}
+.character-grid-good {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.character-row {
+  display: flex;
+  justify-content: center;
+  gap: 140px;
+  margin-bottom: 60px;
+}
+
+.character-box-bad {
+  position: relative;
+  overflow: visible;
+  width: 300px;
+  height: 400px;
+}
+.character-box-good {
+  position: relative;
+  overflow: visible;
+  width: 300px;
+  height: 400px;
+}
+
+.character-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.character-logo-good {
+  position: absolute;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+.character-logo-bad {
+  position: absolute;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.character-box-good:hover .character-logo-good {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 15px white);
+  z-index: 3;
+}
+.character-box-bad:hover .character-logo-bad {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 15px #ed2124);
+  z-index: 3;
+}

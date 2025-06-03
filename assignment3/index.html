@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hollow War</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Saira+Stencil+One&family=Tektur:wght@400..900&family=Turret+Road:wght@200;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Page Title -->
+    <h1 class="page-title">
+      <span style="color: #ffffff">HOLLOW</span>
+      <span style="color: #ed2124">WAR</span>
+    </h1>
+
+    <!-- Text Box Under Title -->
+    <div class="page-description">
+      <span style="color: #ffffff">The battle for the galaxy begins now.</span>
+      <span style="color: #ed2124">Choose your side and your heroes.</span>
+    </div>
+
+    <!-- Two Logos Under Text Box -->
+    <div class="logo-row">
+      <a href="#saint-section"
+        ><img src="images/logo-02.png" alt="The Saint" class="side-logo"
+      /></a>
+      <a href="#demon-section"
+        ><img src="images/logo-01.png" alt="The Demon" class="side-logo"
+      /></a>
+    </div>
+
+    <!-- The Saint Section -->
+    <div id="saint-section" class="top-row">
+      <img src="images/logo-02.png" alt="Good" class="top-logo" />
+      <p class="top-text-good">The Saint</p>
+      <div class="info-box-good">
+        <p>
+          Known as The Saint, this alliance of galactic legends unites under a
+          sacred cause. Born of ancient prophecy and bound by justice, they rise
+          to stop the forces of darkness. They fight together to guard the
+          galaxy’s hidden treasure and preserve balance before it falls into the
+          wrong hands.
+        </p>
+      </div>
+    </div>
+
+    <!-- Character Grid Good -->
+    <div class="character-grid-good">
+      <div class="character-row">
+        <div
+          class="character-box-good hover-info-good"
+          onclick="showPopup(this)"
+          data-description="A gifted caster from the mystic isles, bound by oath to defend the galaxy's light."
+          data-image="images/characterlogo-07.png"
+          data
+        >
+          <div class="character-box">
+            <img src="images/characterframe-07.png" class="character-bg" />
+            <img
+              src="images/characterlogo-07.png"
+              class="character-logo-good"
+            />
+          </div>
+          <div class="tooltip-left-good">
+            <p><strong>Origin:</strong> Magicborn</p>
+            <p><strong>Class:</strong> Mage</p>
+          </div>
+        </div>
+
+        <div class="character-box-good hover-info-good">
+          <div class="character-box">
+            <img src="images/characterframe-08.png" class="character-bg" />
+            <img
+              src="images/characterlogo-08.png"
+              class="character-logo-good"
+            />
+          </div>
+          <div class="tooltip-left-good">
+            <p><strong>Origin:</strong> Human</p>
+            <p><strong>Class:</strong> Lightweight</p>
+          </div>
+        </div>
+
+        <div class="character-box-good hover-info-good">
+          <div class="character-box">
+            <img src="images/characterframe-09.png" class="character-bg" />
+            <img
+              src="images/characterlogo-09.png"
+              class="character-logo-good"
+            />
+          </div>
+          <div class="tooltip-left-good">
+            <p><strong>Origin:</strong> Demi-god</p>
+            <p><strong>Class:</strong> Heavyweight</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="character-row">
+        <div class="character-box-good hover-info-good">
+          <div class="character-box">
+            <img src="images/characterframe-10.png" class="character-bg" />
+            <img
+              src="images/characterlogo-10.png"
+              class="character-logo-good"
+            />
+          </div>
+          <div class="tooltip-left-good">
+            <p><strong>Origin:</strong> Fairy</p>
+            <p><strong>Class:</strong> Marksman</p>
+          </div>
+        </div>
+
+        <div class="character-box-good hover-info-good">
+          <div class="character-box">
+            <img src="images/characterframe-11.png" class="character-bg" />
+            <img
+              src="images/characterlogo-11.png"
+              class="character-logo-good"
+            />
+          </div>
+          <div class="tooltip-left-good">
+            <p><strong>Origin:</strong> Human</p>
+            <p><strong>Class:</strong> Heavyweight</p>
+          </div>
+        </div>
+
+        <div class="character-box-good hover-info-good">
+          <div class="character-box">
+            <img src="images/characterframe-12.png" class="character-bg" />
+            <img
+              src="images/characterlogo-12.png"
+              class="character-logo-good"
+            />
+          </div>
+          <div class="tooltip-left-good">
+            <p><strong>Origin:</strong> Angel</p>
+            <p><strong>Class:</strong> Protector</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Demon Section -->
+    <div id="demon-section" class="top-row">
+      <img src="images/logo-01.png" alt="Bad" class="top-logo" />
+      <p class="top-text-bad">The Demon</p>
+      <div class="info-box-bad">
+        <p>
+          Known as The Demon, they are a fractured alliance of fallen heroes,
+          outcasts, and dark warlords from across the galaxy. Though divided in
+          creed, they share one ruthless ambition: to claim the galaxy’s
+          ultimate treasure. Each seeks its power for their own end, no matter
+          the destruction left behind.
+        </p>
+      </div>
+    </div>
+
+    <!-- Character Grid Bad -->
+    <div class="character-grid-bad">
+      <div class="character-row">
+        <div class="character-box-bad hover-info-bad">
+          <div class="character-box">
+            <img src="images/characterframe-01.png" class="character-bg" />
+            <img src="images/characterlogo-01.png" class="character-logo-bad" />
+          </div>
+          <div class="tooltip-left-bad">
+            <p><strong>Origin:</strong> Human</p>
+            <p><strong>Class:</strong> Lightweight</p>
+          </div>
+        </div>
+
+        <div class="character-box-bad hover-info-bad">
+          <div class="character-box">
+            <img src="images/characterframe-02.png" class="character-bg" />
+            <img src="images/characterlogo-02.png" class="character-logo-bad" />
+          </div>
+          <div class="tooltip-left-bad">
+            <p><strong>Origin:</strong> Demi-god</p>
+            <p><strong>Class:</strong> Heavyweight</p>
+          </div>
+        </div>
+
+        <div class="character-box-bad hover-info-bad">
+          <div class="character-box">
+            <img src="images/characterframe-03.png" class="character-bg" />
+            <img src="images/characterlogo-03.png" class="character-logo-bad" />
+          </div>
+          <div class="tooltip-left-bad">
+            <p><strong>Origin:</strong> Magicborn</p>
+            <p><strong>Class:</strong> Mage</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="character-row">
+        <div class="character-box-bad hover-info-bad">
+          <div class="character-box">
+            <img src="images/characterframe-04.png" class="character-bg" />
+            <img src="images/characterlogo-04.png" class="character-logo-bad" />
+          </div>
+          <div class="tooltip-left-bad">
+            <p><strong>Origin:</strong> Angel</p>
+            <p><strong>Class:</strong> Lightweight</p>
+          </div>
+        </div>
+
+        <div class="character-box-bad hover-info-bad">
+          <div class="character-box">
+            <img src="images/characterframe-05.png" class="character-bg" />
+            <img src="images/characterlogo-05.png" class="character-logo-bad" />
+          </div>
+          <div class="tooltip-left-bad">
+            <p><strong>Origin:</strong> Human</p>
+            <p><strong>Class:</strong> Protector</p>
+          </div>
+        </div>
+
+        <div class="character-box-bad hover-info-bad">
+          <div class="character-box">
+            <img src="images/characterframe-06.png" class="character-bg" />
+            <img src="images/characterlogo-06.png" class="character-logo-bad" />
+          </div>
+          <div class="tooltip-left-bad">
+            <p><strong>Origin:</strong> Fairy</p>
+            <p><strong>Class:</strong> Marksman</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Popup Modal -->
+    <div id="character-popup" class="character-popup hidden">
+      <div class="popup-content">
+        <img id="popup-image" src="" alt="Character" />
+        <div class="popup-info">
+          <p id="popup-description"></p>
+          <img
+            id="popup-weapon-img"
+            src=""
+            alt="Weapon"
+            style="max-width: 100px; margin-top: 10px"
+          />
+        </div>
+        <button onclick="closePopup()">Close</button>
+      </div>
+    </div>
+  </body>
+</html>

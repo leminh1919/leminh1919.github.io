@@ -5,6 +5,37 @@ body {
   font-family: "Orbitron", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+.page-title {
+  text-align: center;
+  font-size: 100px;
+  margin-top: 0;
+  font-family: "Saira Stencil One", sans-serif;
+}
+
+.page-description {
+  text-align: center;
+
+  font-size: 30px;
+}
+
+.logo-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.side-logo {
+  transition: transform 0.3s ease;
+}
+
+.side-logo:hover {
+  transform: scale(1.1);
+}
+
 .top-row {
   display: flex;
   align-items: center;
@@ -13,6 +44,7 @@ body {
   padding: 40px 20px;
   max-width: 1300px;
   margin: 0 auto;
+  margin-top: 60px;
   flex-wrap: nowrap; /* Force single-line layout */
   overflow-x: auto;
 }
@@ -21,7 +53,7 @@ body {
   color: white;
   font-size: 70px;
   font-weight: bold;
-  font-family: "Orbitron", sans-serif;
+  font-family: "Saira Stencil One", sans-serif;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -29,14 +61,14 @@ body {
   color: #ed2124;
   font-size: 70px;
   font-weight: bold;
-  font-family: "Orbitron", sans-serif;
+  font-family: "Saira Stencil One", sans-serif;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .info-box-good {
   background-color: #2f2f2f;
-  border: 2px solid #000000;
+  border: 10px solid #000000;
   border-radius: 10px;
   padding: 0 20px;
   color: white;
@@ -47,7 +79,7 @@ body {
 
 .info-box-bad {
   background-color: #391212;
-  border: 2px solid #000000;
+  border: 10px solid #000000;
   border-radius: 10px;
   padding: 0 20px;
   max-width: 500px;
@@ -119,12 +151,157 @@ body {
 }
 
 .character-box-good:hover .character-logo-good {
-  transform: scale(1.2);
+  transform: scale(1.1);
   filter: drop-shadow(0 0 15px white);
   z-index: 3;
 }
 .character-box-bad:hover .character-logo-bad {
-  transform: scale(1.2);
+  transform: scale(1.1);
   filter: drop-shadow(0 0 15px #ed2124);
   z-index: 3;
+}
+
+.hover-info-bad {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-left-bad {
+  position: absolute;
+  left: -130px; /* Shifts it fully to the left of the container */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #391212;
+  color: #ed2124;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: #000000 5px solid;
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+  white-space: normal;
+  max-width: 300px;
+}
+
+.hover-info-bad:hover .tooltip-left-bad {
+  opacity: 1;
+}
+
+.hover-info-good {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-left-good {
+  position: absolute;
+  left: -130px; /* Shifts it fully to the left of the container */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #2f2f2f;
+  color: white;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: #000000 5px solid;
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+  white-space: normal;
+  max-width: 300px;
+}
+
+.hover-info-good:hover .tooltip-left-good {
+  opacity: 1;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  padding: 40px 60px;
+  box-sizing: border-box;
+  gap: 60px;
+  color: white;
+}
+
+.popup-content .left {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.popup-content .left img {
+  height: auto;
+  width: 70vh;
+  object-fit: contain;
+}
+
+.popup-content .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 60px;
+  color: white;
+}
+
+#popup-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 45px;
+  margin: 20px 0;
+  color: #ffffff;
+}
+
+#popup-weapon-img {
+  width: 500px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+#popup-description {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+  max-width: 600px;
+  color: #ffffff;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 36px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: sans-serif;
+  transition: transform 0.2s ease;
+}
+
+.close-button:hover {
+  transform: scale(1.2);
+  color: #ed2124;
 }

@@ -1,3 +1,6 @@
+window.onload = function () {
+  window.scrollTo(0, 0);
+};
 function showPopup(el) {
   const popup = document.getElementById("popup");
 
@@ -20,8 +23,10 @@ function showPopup(el) {
 
   // Show popup
   popup.classList.remove("hidden");
+  document.body.classList.add("noscroll");
 }
 
 function closePopup() {
   document.getElementById("popup").classList.add("hidden");
+  document.body.classList.remove("noscroll");
 }

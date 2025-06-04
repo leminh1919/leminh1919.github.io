@@ -1,3 +1,7 @@
+/*In my concept , the main focus will be the opposite between two side : bad and good. So for the color
+choice, i want each side have their unique color so i choose bright red and whitefor each side which can
+clearly display the purpose of each side. Because of that, for the background of the page i choose light black,
+for the good side is dark grey and for the bad side is dark red*/
 body {
   background-color: #1a1a1a;
   margin: 0;
@@ -12,11 +16,13 @@ body.noscroll {
 html {
   scroll-behavior: smooth;
 }
+/*Style for page title part*/
+
 .page-title {
   text-align: center;
   font-size: 100px;
   margin-top: 0;
-  font-family: "Saira Stencil One", sans-serif;
+  font-family: "Saira Stencil One", sans-serif; /*I choose this font because it bring the fantasy and sci-fi vibes at the same time*/
 }
 
 .page-description {
@@ -39,6 +45,7 @@ html {
 .side-logo:hover {
   transform: scale(1.1);
 }
+/*Style for each side name, logo, desciption*/
 
 .top-row {
   display: flex;
@@ -49,7 +56,7 @@ html {
   max-width: 1300px;
   margin: 0 auto;
   margin-top: 60px;
-  flex-wrap: nowrap; /* Force single-line layout */
+  flex-wrap: nowrap;
   overflow-x: auto;
 }
 
@@ -92,6 +99,8 @@ html {
   font-size: 20px;
   line-height: 1.6;
 }
+
+/*Style for character box*/
 .character-grid-good {
   display: flex;
   flex-direction: column;
@@ -170,9 +179,10 @@ html {
   display: inline-block;
 }
 
+/*Style for small window popup when hover*/
 .tooltip-left-bad {
   position: absolute;
-  left: -130px; /* Shifts it fully to the left of the container */
+  left: -130px;
   top: 50%;
   transform: translateY(-50%);
   background-color: #391212;
@@ -200,7 +210,7 @@ html {
 
 .tooltip-left-good {
   position: absolute;
-  left: -130px; /* Shifts it fully to the left of the container */
+  left: -130px;
   top: 50%;
   transform: translateY(-50%);
   background-color: #2f2f2f;
@@ -220,7 +230,10 @@ html {
 .hover-info-good:hover .tooltip-left-good {
   opacity: 1;
 }
-
+/*Style for big window popup when click*/
+/*In this window, a big avatar appear on the left and everything else on the right. At first, my idea was
+the big avatar on top of the window and you scroll down for everything else but i do not like that layout
+because in the popup window you still have to scroll down to see all infromation is not a good idea*/
 .popup {
   position: fixed;
   top: 0;
@@ -296,7 +309,7 @@ html {
 .bad-popup #popup-description {
   color: #ed2124;
 }
-
+/*Style for close button*/
 .close-button {
   position: absolute;
   top: 20px;

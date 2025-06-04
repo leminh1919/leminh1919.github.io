@@ -1,3 +1,11 @@
+<!--For this assignment i create a page that include 3 action : scroll, hover and click. 
+Scroll: you scroll down to explore more about the context and character
+Hover: you hover on a character to show the basic information
+Click: you click on a character to show the full information which include their weapon and story
+The context of the website is a war between two side and you have a list of character from each side
+to discover. It is a combination of fantasy and sci-fi genre. For the character logo and weapon i generate
+from ChatGPT. For the character frame and two logo, i create by myself in Adobe Illustrator. I want to 
+create all the character myself but i think it will take my many unecessary time-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,18 +24,19 @@
 
   <body>
     <!-- Page Title -->
+    <!--When you see the page, you go straight into the war where you have to choose a side. I think about
+     have the description for the context of the war but it will be way too much and not really impress the viewer
+     -->
     <h1 class="page-title">
       <span style="color: #ffffff">HOLLOW</span>
       <span style="color: #ed2124">WAR</span>
     </h1>
 
-    <!-- Text Box Under Title -->
     <div class="page-description">
       <span style="color: #ffffff">The battle for the galaxy begins now.</span>
       <span style="color: #ed2124">Choose your side and your heroes.</span>
     </div>
 
-    <!-- Two Logos Under Text Box -->
     <div class="logo-row">
       <a href="#saint-section"
         ><img src="images/logo-02.png" alt="The Saint" class="side-logo"
@@ -38,6 +47,7 @@
     </div>
 
     <!-- The Saint Section -->
+    <!--I choose to show each side seperately to the viewer can really feel the opposite and difference-->
     <div id="saint-section" class="top-row">
       <img src="images/logo-02.png" alt="Good" class="top-logo" />
       <p class="top-text-good">The Saint</p>
@@ -53,8 +63,10 @@
     </div>
 
     <!-- Character Grid Good -->
+    <!--I choose a row of 3 character to not show too many character together so you can focus on each character one by one-->
     <div class="character-grid-good">
       <div class="character-row">
+        <!--Character 1-->
         <div
           class="character-box-good hover-info-good"
           onclick="showPopup(this)"
@@ -64,19 +76,21 @@
           data-image="images/characterlogo-07.png"
           data-weaponimg="images/weapon-09.png"
         >
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="character-box">
             <img src="images/characterframe-07.png" class="character-bg" />
             <img
               src="images/characterlogo-07.png"
               class="character-logo-good"
-            />
+            /><!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           </div>
           <div class="tooltip-left-good">
+            <!--Tooltip when hover for each character-->
             <p><strong>Origin:</strong> Magicborn</p>
             <p><strong>Class:</strong> Mage</p>
           </div>
         </div>
-
+        <!--Character 2-->
         <div
           class="character-box-good hover-info-good"
           onclick="showPopup(this)"
@@ -86,19 +100,20 @@
           data-image="images/characterlogo-08.png"
           data-weaponimg="images/weapon-07.png"
         >
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="character-box">
             <img src="images/characterframe-08.png" class="character-bg" />
             <img
               src="images/characterlogo-08.png"
               class="character-logo-good"
-            />
+            /><!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           </div>
           <div class="tooltip-left-good">
             <p><strong>Origin:</strong> Human</p>
             <p><strong>Class:</strong> Lightweight</p>
           </div>
         </div>
-
+        <!--Character 3-->
         <div
           class="character-box-good hover-info-good"
           onclick="showPopup(this)"
@@ -108,12 +123,13 @@
           data-image="images/characterlogo-09.png"
           data-weaponimg="images/weapon-12.png"
         >
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="character-box">
             <img src="images/characterframe-09.png" class="character-bg" />
             <img
               src="images/characterlogo-09.png"
               class="character-logo-good"
-            />
+            /><!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           </div>
           <div class="tooltip-left-good">
             <p><strong>Origin:</strong> Demi-god</p>
@@ -123,6 +139,7 @@
       </div>
 
       <div class="character-row">
+        <!--Character 4-->
         <div
           class="character-box-good hover-info-good"
           onclick="showPopup(this)"
@@ -132,19 +149,20 @@
           data-image="images/characterlogo-10.png"
           data-weaponimg="images/weapon-10.png"
         >
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="character-box">
             <img src="images/characterframe-10.png" class="character-bg" />
             <img
               src="images/characterlogo-10.png"
               class="character-logo-good"
-            />
+            /><!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           </div>
           <div class="tooltip-left-good">
             <p><strong>Origin:</strong> Fairy</p>
             <p><strong>Class:</strong> Marksman</p>
           </div>
         </div>
-
+        <!--Character 5-->
         <div
           class="character-box-good hover-info-good"
           onclick="showPopup(this)"
@@ -154,19 +172,20 @@
           data-image="images/characterlogo-11.png"
           data-weaponimg="images/weapon-11.png"
         >
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="character-box">
             <img src="images/characterframe-11.png" class="character-bg" />
             <img
               src="images/characterlogo-11.png"
               class="character-logo-good"
-            />
+            /><!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           </div>
           <div class="tooltip-left-good">
             <p><strong>Origin:</strong> Human</p>
             <p><strong>Class:</strong> Heavyweight</p>
           </div>
         </div>
-
+        <!--Character 6-->
         <div
           class="character-box-good hover-info-good"
           onclick="showPopup(this)"
@@ -176,12 +195,13 @@
           data-image="images/characterlogo-12.png"
           data-weaponimg="images/weapon-08.png"
         >
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="character-box">
             <img src="images/characterframe-12.png" class="character-bg" />
             <img
               src="images/characterlogo-12.png"
               class="character-logo-good"
-            />
+            /><!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           </div>
           <div class="tooltip-left-good">
             <p><strong>Origin:</strong> Angel</p>
@@ -209,25 +229,28 @@
     <!-- Character Grid Bad -->
     <div class="character-grid-bad">
       <div class="character-row">
+        <!--Character 7-->
         <div
           class="character-box-bad hover-info-bad"
           onclick="showPopup(this)"
           data-name="KANE-NOBI (Human/Lightweight)"
           data-side="bad"
-          data-description=" A former prodigy of the Galactic Empire, now stands as one of its most dangerous renegades. Betrayed by his master, he turned to darkness, embracing vengeance and power. Driven by wrath, Kane-nobi serves no cause but his own, destroying anything and anyone that stands between him and his reveng"
+          data-description=" A former prodigy of the Galactic Empire, now stands as one of its most dangerous renegades. Betrayed by his master, he turned to darkness, embracing vengeance and power. Driven by wrath, Kane-nobi serves no cause but his own, destroying anything and anyone that stands between him and his revenge."
           data-image="images/characterlogo-01.png"
           data-weaponimg="images/weapon-01.png"
         >
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="character-box">
             <img src="images/characterframe-01.png" class="character-bg" />
             <img src="images/characterlogo-01.png" class="character-logo-bad" />
           </div>
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="tooltip-left-bad">
             <p><strong>Origin:</strong> Human</p>
             <p><strong>Class:</strong> Lightweight</p>
           </div>
         </div>
-
+        <!--Character 8-->
         <div
           class="character-box-bad hover-info-bad"
           onclick="showPopup(this)"
@@ -237,28 +260,34 @@
           data-image="images/characterlogo-02.png"
           data-weaponimg="images/weapon-02.png"
         >
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="character-box">
             <img src="images/characterframe-02.png" class="character-bg" />
             <img src="images/characterlogo-02.png" class="character-logo-bad" />
           </div>
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="tooltip-left-bad">
             <p><strong>Origin:</strong> Demi-god</p>
             <p><strong>Class:</strong> Heavyweight</p>
           </div>
         </div>
-
+        <!--Character 9-->
         <div
           class="character-box-bad hover-info-bad"
           onclick="showPopup(this)"
           data-name="MAVIE (Magicborn/Mage)"
           data-side="bad"
-          data-description="She was once a loving sister and mentor to Maya, guiding her through the ways of magic. But the allure of dark power consumed her. Now, as a devoted sorceress of the Demon, Mavie is obsessed with forbidden magic—twisted by ambition, betrayal, and the thrill of ultimate control"
+          data-description="She was once a loving sister and mentor to Maya, guiding her through the ways of magic. But the allure of dark power consumed her. Now, as a devoted sorceress of the Demon, Mavie is obsessed with forbidden magic—twisted by ambition, betrayal, and the thrill of ultimate control."
           data-image="images/characterlogo-03.png"
           data-weaponimg="images/weapon-03.png"
         >
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="character-box">
             <img src="images/characterframe-03.png" class="character-bg" />
-            <img src="images/characterlogo-03.png" class="character-logo-bad" />
+            <img
+              src="images/characterlogo-03.png"
+              class="character-logo-bad"
+            /><!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           </div>
           <div class="tooltip-left-bad">
             <p><strong>Origin:</strong> Magicborn</p>
@@ -268,6 +297,7 @@
       </div>
 
       <div class="character-row">
+        <!--Character 10-->
         <div
           class="character-box-bad hover-info-bad"
           onclick="showPopup(this)"
@@ -277,35 +307,41 @@
           data-image="images/characterlogo-04.png"
           data-weaponimg="images/weapon-06.png"
         >
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="character-box">
             <img src="images/characterframe-04.png" class="character-bg" />
             <img src="images/characterlogo-04.png" class="character-logo-bad" />
           </div>
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="tooltip-left-bad">
             <p><strong>Origin:</strong> Angel</p>
             <p><strong>Class:</strong> Lightweight</p>
           </div>
         </div>
-
+        <!--Character 11-->
         <div
           class="character-box-bad hover-info-bad"
           onclick="showPopup(this)"
           data-name="MARTIN (Human/Protector)"
           data-side="bad"
-          data-description="The hero, once an ordinary warrior, was left for dead on the battlefield. But the dark magic breathed unholy life into him and give him new purpose. Now bound by shadow and pain, he serves darkness with unwavering loyalty. Neither fully alive nor dead, Martin is a relentless force of vengeance and fea"
+          data-description="The hero, once an ordinary warrior, was left for dead on the battlefield. But the dark magic breathed unholy life into him and give him new purpose. Now bound by shadow and pain, he serves darkness with unwavering loyalty. Neither fully alive nor dead, Martin is a relentless force of vengeance and fear."
           data-image="images/characterlogo-05.png"
           data-weaponimg="images/weapon-04.png"
         >
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="character-box">
             <img src="images/characterframe-05.png" class="character-bg" />
-            <img src="images/characterlogo-05.png" class="character-logo-bad" />
+            <img
+              src="images/characterlogo-05.png"
+              class="character-logo-bad"
+            /><!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           </div>
           <div class="tooltip-left-bad">
             <p><strong>Origin:</strong> Human</p>
             <p><strong>Class:</strong> Protector</p>
           </div>
         </div>
-
+        <!--Character 12-->
         <div
           class="character-box-bad hover-info-bad"
           onclick="showPopup(this)"
@@ -315,9 +351,13 @@
           data-image="images/characterlogo-06.png"
           data-weaponimg="images/weapon-05.png"
         >
+          <!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           <div class="character-box">
             <img src="images/characterframe-06.png" class="character-bg" />
-            <img src="images/characterlogo-06.png" class="character-logo-bad" />
+            <img
+              src="images/characterlogo-06.png"
+              class="character-logo-bad"
+            /><!--OpenAI ChatGPT (2025). ChatGPT image. [Image]. Available at: https://chatgpt.com/ (Accessed: June 1, 2025)-->
           </div>
           <div class="tooltip-left-bad">
             <p><strong>Origin:</strong> Fairy</p>
@@ -327,6 +367,9 @@
       </div>
     </div>
     <!-- Popup window -->
+    <!--For the popup window, i only choose to display the character weapon and story. I think about 
+     adding more like stats or basic information like DOB but i realise it will be too much for each 
+     character so choose i show only crucial part-->
     <div id="popup" class="popup hidden">
       <div class="popup-content">
         <div class="left">

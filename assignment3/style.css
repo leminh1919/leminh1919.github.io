@@ -5,6 +5,10 @@ body {
   font-family: "Orbitron", sans-serif;
 }
 
+body.noscroll {
+  overflow: hidden;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -223,7 +227,7 @@ html {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -268,8 +272,8 @@ html {
 }
 
 #popup-title {
-  font-family: "Orbitron", sans-serif;
-  font-size: 45px;
+  font-family: "Saira Stencil One", sans-serif;
+  font-size: 47px;
   margin: 20px 0;
   color: #ffffff;
 }
@@ -281,11 +285,16 @@ html {
 }
 
 #popup-description {
-  font-family: "Roboto", sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 20px;
   line-height: 1.6;
   max-width: 600px;
   color: #ffffff;
+}
+
+.bad-popup #popup-title,
+.bad-popup #popup-description {
+  color: #ed2124;
 }
 
 .close-button {
@@ -301,7 +310,15 @@ html {
   transition: transform 0.2s ease;
 }
 
+.bad-popup .close-button {
+  color: #ed2124;
+}
+
 .close-button:hover {
   transform: scale(1.2);
   color: #ed2124;
+}
+.bad-popup .close-button:hover {
+  transform: scale(1.2);
+  color: white;
 }
